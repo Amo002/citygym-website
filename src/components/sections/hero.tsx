@@ -29,7 +29,7 @@ export function Hero({ data }: { data: SiteContent["hero"] }) {
           {data.eyebrow}
         </motion.span>
 
-        <h1 className="font-display mt-6 text-[18vw] leading-[0.85] sm:text-[14vw] lg:text-[11rem]">
+        <h1 className="hero-title font-display mt-6 text-[18vw] leading-[0.85] sm:text-[14vw] lg:text-[11rem]">
           <motion.span
             className="block"
             initial={{ opacity: 0, y: 40 }}
@@ -39,12 +39,12 @@ export function Hero({ data }: { data: SiteContent["hero"] }) {
             {data.titleTop}
           </motion.span>
           <motion.span
-            className="block text-gradient"
+            className="block"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15 }}
           >
-            {data.titleHighlight}{" "}
+            <span className="text-gradient inline-block">{data.titleHighlight}</span>{" "}
             <span className="text-fg">{data.titleBottom}</span>
           </motion.span>
         </h1>

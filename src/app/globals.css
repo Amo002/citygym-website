@@ -96,7 +96,16 @@ input, textarea, [contenteditable], select {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  /* keep tall glyphs / Arabic diacritics from being clipped by background-clip */
+  padding-block: 0.06em;
 }
+
+/* Arabic display text is taller (diacritics) — give the hero room so nothing clips. */
+[dir="rtl"] .hero-title {
+  line-height: 1.22 !important;
+  padding-block: 0.12em;
+}
+[dir="rtl"] .hero-title .text-gradient { padding-block: 0.14em; }
 
 /* Grain overlay */
 .grain::before {
