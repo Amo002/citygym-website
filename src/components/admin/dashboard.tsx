@@ -4,7 +4,7 @@ import { useState, useTransition } from "react";
 import {
   Save, LogOut, Check, Loader2, ExternalLink, Inbox, Trash2,
   Building2, Sparkles, Info, LayoutGrid, CalendarDays, UsersRound,
-  Images, Tag, MapPin, KeyRound,
+  Images, Tag, MapPin, KeyRound, Megaphone,
 } from "lucide-react";
 import type { RawSiteContent, Submission } from "@/lib/types";
 import { ICON_NAMES } from "@/components/ui/icon";
@@ -13,12 +13,13 @@ import { saveContentAction, logoutAction, deleteSubmissionAction, changePassword
 import { Text, Area, ImageField, Repeater, LocText, LocArea, LocStringList } from "./fields";
 
 type Tab =
-  | "brand" | "hero" | "about" | "services" | "classes"
+  | "brand" | "hero" | "marquee" | "about" | "services" | "classes"
   | "trainers" | "gallery" | "pricing" | "location" | "messages" | "settings";
 
 const TABS: { key: Tab; label: string; Icon: typeof Save }[] = [
   { key: "brand", label: "Brand", Icon: Building2 },
   { key: "hero", label: "Hero", Icon: Sparkles },
+  { key: "marquee", label: "Marquee", Icon: Megaphone },
   { key: "about", label: "About", Icon: Info },
   { key: "services", label: "Services", Icon: LayoutGrid },
   { key: "classes", label: "Classes", Icon: CalendarDays },
@@ -142,22 +143,11 @@ export function AdminDashboard({
           {tab === "hero" && (
             <Card>
               <LocText label="Eyebrow" value={c.hero.eyebrow} onChange={(v) => up("hero", { eyebrow: v })} />
-              <Label>Headline — each row is one line (toggle orange highlight)</Label>
-              <Repeater
-                items={c.hero.titleLines}
-                onChange={(titleLines) => up("hero", { titleLines })}
-                blank={() => ({ text: { en: "", ar: "" }, highlight: false })}
-                addLabel="Add line"
-                render={(ln, u) => (
-                  <>
-                    <LocText label="Line text" value={ln.text} onChange={(v) => u({ text: v })} />
-                    <label className="flex items-center gap-2 text-sm font-medium">
-                      <input type="checkbox" checked={ln.highlight} onChange={(e) => u({ highlight: e.target.checked })} />
-                      Highlight this line in orange
-                    </label>
-                  </>
-                )}
-              />
+              <Grid2>
+                <LocText label="Title Top" value={c.hero.titleTop} onChange={(v) => up("hero", { titleTop: v })} />
+                <LocText label="Highlight Word" value={c.hero.titleHighlight} onChange={(v) => up("hero", { titleHighlight: v })} />
+                <LocText label="Title Bottom" value={c.hero.titleBottom} onChange={(v) => up("hero", { titleBottom: v })} />
+              </Grid2>
               <Grid2>
                 <LocText label="Primary CTA" value={c.hero.ctaPrimary} onChange={(v) => up("hero", { ctaPrimary: v })} />
                 <LocText label="Secondary CTA" value={c.hero.ctaSecondary} onChange={(v) => up("hero", { ctaSecondary: v })} />
@@ -177,6 +167,14 @@ export function AdminDashboard({
                   </>
                 )}
               />
+            </Card>
+          )}
+
+          {tab === "marquee" && (
+            <Card>
+              <Label>Scrolling bars — add as many phrases as you like</Label>
+              <p className="text-sm text-fg-muted">These phrases scroll across the two moving orange bars on the homepage.</p>
+              <LocStringList label="Phrases" items={c.marquee.phrases} onChange={(phrases) => up("marquee", { phrases })} />
             </Card>
           )}
 

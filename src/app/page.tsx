@@ -25,11 +25,11 @@ export default async function Home() {
       <Navbar brand={c.brand.name} lang={lang} t={t} />
       <main>
         <Hero data={c.hero} />
-        <Marquee text={`${c.brand.name} — ${c.brand.tagline}`} />
+        <Marquee phrases={c.marquee.phrases} />
         <About data={c.about} yearsLabel={t.yearsStrong} />
         <Services data={c.services} />
         <Classes data={c.classes} />
-        <Marquee text={lang === "ar" ? "لا أعذار · فقط نتائج" : "No Excuses · Just Results"} reverse />
+        <Marquee phrases={c.marquee.phrases} reverse />
         <Trainers data={c.trainers} />
         <Gallery data={c.gallery} />
         <Pricing data={c.pricing} t={t} />

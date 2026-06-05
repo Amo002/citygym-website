@@ -30,17 +30,23 @@ export function Hero({ data }: { data: SiteContent["hero"] }) {
         </motion.span>
 
         <h1 className="hero-title font-display mt-6 text-[18vw] leading-[0.85] sm:text-[14vw] lg:text-[11rem]">
-          {data.titleLines.map((line, i) => (
-            <motion.span
-              key={i}
-              className="block"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.05 + i * 0.1 }}
-            >
-              <span className={line.highlight ? "text-gradient inline-block" : undefined}>{line.text}</span>
-            </motion.span>
-          ))}
+          <motion.span
+            className="block"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.05 }}
+          >
+            {data.titleTop}
+          </motion.span>
+          <motion.span
+            className="block"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+          >
+            <span className="text-gradient inline-block">{data.titleHighlight}</span>{" "}
+            <span className="text-fg">{data.titleBottom}</span>
+          </motion.span>
         </h1>
 
         <motion.p

@@ -21,10 +21,9 @@ export const DEFAULT_CONTENT: RawSiteContent = {
   },
   hero: {
     eyebrow: L("Amman · Jordan", "عمّان · الأردن"),
-    titleLines: [
-      { text: L("Train Hard", "تمرّن بقوة"), highlight: false },
-      { text: L("Live Better", "عِش أفضل"), highlight: true },
-    ],
+    titleTop: L("Train Hard", "تمرّن بقوة"),
+    titleHighlight: L("Live", "عِش"),
+    titleBottom: L("Better", "أفضل"),
     subtitle: L(
       "State-of-the-art equipment, world-class coaches, and a community that pushes you further. This is where limits get rewritten.",
       "أحدث الأجهزة، ومدرّبون على أعلى مستوى، ومجتمع يدفعك إلى الأمام. هنا تُعاد كتابة الحدود."
@@ -37,6 +36,13 @@ export const DEFAULT_CONTENT: RawSiteContent = {
       { value: "35+", label: L("Weekly Classes", "حصة أسبوعية") },
       { value: "18", label: L("Expert Coaches", "مدرّب محترف") },
       { value: "24/7", label: L("Open Access", "دخول دائم") },
+    ],
+  },
+  marquee: {
+    phrases: [
+      L("City GYM — More Than Fitness", "سيتي جيم — أكثر من مجرد لياقة"),
+      L("No Excuses · Just Results", "لا أعذار · فقط نتائج"),
+      L("Train · Sweat · Repeat", "تمرّن · تعرّق · كرّر"),
     ],
   },
   about: {
