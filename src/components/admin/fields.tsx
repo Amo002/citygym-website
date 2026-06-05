@@ -27,11 +27,7 @@ export function Area({
   );
 }
 
-/* ── Bilingual fields (EN + AR side by side) ── */
-function LangBadge({ children }: { children: string }) {
-  return <span className="absolute top-2 z-10 select-none rounded bg-bg px-1 text-[10px] font-bold text-fg-muted ltr:right-2 rtl:left-2">{children}</span>;
-}
-
+/* ── Bilingual fields (English on the left, Arabic on the right) ── */
 export function LocText({
   label, value, onChange,
 }: { label: string; value: Localized; onChange: (v: Localized) => void }) {
@@ -39,12 +35,8 @@ export function LocText({
     <div className="block">
       <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-fg-muted">{label}</span>
       <div className="grid gap-2 sm:grid-cols-2">
-        <div className="relative"><LangBadge>EN</LangBadge>
-          <input className="field pr-9" dir="ltr" value={value.en} onChange={(e) => onChange({ ...value, en: e.target.value })} />
-        </div>
-        <div className="relative"><LangBadge>ع</LangBadge>
-          <input className="field pr-9 text-right" dir="rtl" value={value.ar} onChange={(e) => onChange({ ...value, ar: e.target.value })} />
-        </div>
+        <input className="field" dir="ltr" placeholder="English" value={value.en} onChange={(e) => onChange({ ...value, en: e.target.value })} />
+        <input className="field text-right" dir="rtl" placeholder="العربية" value={value.ar} onChange={(e) => onChange({ ...value, ar: e.target.value })} />
       </div>
     </div>
   );
@@ -57,12 +49,8 @@ export function LocArea({
     <div className="block">
       <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-fg-muted">{label}</span>
       <div className="grid gap-2 sm:grid-cols-2">
-        <div className="relative"><LangBadge>EN</LangBadge>
-          <textarea className="field min-h-24 resize-y pr-9" dir="ltr" value={value.en} onChange={(e) => onChange({ ...value, en: e.target.value })} />
-        </div>
-        <div className="relative"><LangBadge>ع</LangBadge>
-          <textarea className="field min-h-24 resize-y pr-9 text-right" dir="rtl" value={value.ar} onChange={(e) => onChange({ ...value, ar: e.target.value })} />
-        </div>
+        <textarea className="field min-h-24 resize-y" dir="ltr" placeholder="English" value={value.en} onChange={(e) => onChange({ ...value, en: e.target.value })} />
+        <textarea className="field min-h-24 resize-y text-right" dir="rtl" placeholder="العربية" value={value.ar} onChange={(e) => onChange({ ...value, ar: e.target.value })} />
       </div>
     </div>
   );
