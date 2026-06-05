@@ -16,7 +16,7 @@ export function LangSwitch({ lang }: { lang: Lang }) {
 
   const opts: { code: Lang; label: string }[] = [
     { code: "en", label: "EN" },
-    { code: "ar", label: "ع" },
+    { code: "ar", label: "عربي" },
   ];
 
   return (
