@@ -21,9 +21,10 @@ export const DEFAULT_CONTENT: RawSiteContent = {
   },
   hero: {
     eyebrow: L("Amman · Jordan", "عمّان · الأردن"),
-    titleTop: L("Train Hard", "تمرّن بقوة"),
-    titleHighlight: L("Live", "عِش"),
-    titleBottom: L("Better", "أفضل"),
+    titleLines: [
+      { text: L("Train Hard", "تمرّن بقوة"), highlight: false },
+      { text: L("Live Better", "عِش أفضل"), highlight: true },
+    ],
     subtitle: L(
       "State-of-the-art equipment, world-class coaches, and a community that pushes you further. This is where limits get rewritten.",
       "أحدث الأجهزة، ومدرّبون على أعلى مستوى، ومجتمع يدفعك إلى الأمام. هنا تُعاد كتابة الحدود."

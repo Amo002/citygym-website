@@ -12,6 +12,7 @@ export interface Localized { en: string; ar: string }
 
 /* ───────────────── Resolved (public render) ───────────────── */
 export interface Stat { value: string; label: string }
+export interface TitleLine { text: string; highlight: boolean }
 export interface Service { icon: string; title: string; desc: string }
 export interface ClassItem { name: string; image: string; schedule: string; level: string }
 export interface Trainer { name: string; role: string; image: string; instagram: string }
@@ -26,7 +27,7 @@ export interface SiteContent {
     instagram: string; facebook: string; whatsapp: string;
   };
   hero: {
-    eyebrow: string; titleTop: string; titleHighlight: string; titleBottom: string;
+    eyebrow: string; titleLines: TitleLine[];
     subtitle: string; ctaPrimary: string; ctaSecondary: string; image: string; stats: Stat[];
   };
   about: { eyebrow: string; heading: string; body: string; image: string; points: string[] };
@@ -40,6 +41,7 @@ export interface SiteContent {
 
 /* ───────────────── Raw (stored + admin) ───────────────── */
 export interface RawStat { value: string; label: Localized }
+export interface RawTitleLine { text: Localized; highlight: boolean }
 export interface RawService { icon: string; title: Localized; desc: Localized }
 export interface RawClassItem { name: Localized; image: string; schedule: Localized; level: Localized }
 export interface RawTrainer { name: Localized; role: Localized; image: string; instagram: string }
@@ -54,7 +56,7 @@ export interface RawSiteContent {
     instagram: string; facebook: string; whatsapp: string;
   };
   hero: {
-    eyebrow: Localized; titleTop: Localized; titleHighlight: Localized; titleBottom: Localized;
+    eyebrow: Localized; titleLines: RawTitleLine[];
     subtitle: Localized; ctaPrimary: Localized; ctaSecondary: Localized; image: string; stats: RawStat[];
   };
   about: { eyebrow: Localized; heading: Localized; body: Localized; image: string; points: Localized[] };

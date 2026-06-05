@@ -142,11 +142,22 @@ export function AdminDashboard({
           {tab === "hero" && (
             <Card>
               <LocText label="Eyebrow" value={c.hero.eyebrow} onChange={(v) => up("hero", { eyebrow: v })} />
-              <Grid2>
-                <LocText label="Title Top" value={c.hero.titleTop} onChange={(v) => up("hero", { titleTop: v })} />
-                <LocText label="Highlight Word" value={c.hero.titleHighlight} onChange={(v) => up("hero", { titleHighlight: v })} />
-                <LocText label="Title Bottom" value={c.hero.titleBottom} onChange={(v) => up("hero", { titleBottom: v })} />
-              </Grid2>
+              <Label>Headline — each row is one line (toggle orange highlight)</Label>
+              <Repeater
+                items={c.hero.titleLines}
+                onChange={(titleLines) => up("hero", { titleLines })}
+                blank={() => ({ text: { en: "", ar: "" }, highlight: false })}
+                addLabel="Add line"
+                render={(ln, u) => (
+                  <>
+                    <LocText label="Line text" value={ln.text} onChange={(v) => u({ text: v })} />
+                    <label className="flex items-center gap-2 text-sm font-medium">
+                      <input type="checkbox" checked={ln.highlight} onChange={(e) => u({ highlight: e.target.checked })} />
+                      Highlight this line in orange
+                    </label>
+                  </>
+                )}
+              />
               <Grid2>
                 <LocText label="Primary CTA" value={c.hero.ctaPrimary} onChange={(v) => up("hero", { ctaPrimary: v })} />
                 <LocText label="Secondary CTA" value={c.hero.ctaSecondary} onChange={(v) => up("hero", { ctaSecondary: v })} />

@@ -20,11 +20,11 @@ export function Pricing({ data, t }: { data: SiteContent["pricing"]; t: UIString
                 }`}
               >
                 {p.featured && (
-                  <span className="absolute right-6 top-6 inline-flex items-center gap-1 rounded-full bg-brand-ink/15 px-3 py-1 text-xs font-bold">
+                  <span className="absolute right-6 top-6 inline-flex items-center gap-1 rounded-full bg-brand-ink/15 px-3 py-1 text-xs font-bold rtl:right-auto rtl:left-6">
                     <Star size={12} className="fill-current" /> {t.popular}
                   </span>
                 )}
-                <h3 className="font-display text-2xl">{p.name}</h3>
+                <h3 className={`font-display text-2xl ${p.featured ? "pe-24 rtl:pe-0 rtl:ps-24" : ""}`}>{p.name}</h3>
                 <div className="mt-4 flex items-end gap-1">
                   <span className="font-display text-6xl">{p.price}</span>
                   <span className={`mb-2 text-sm ${p.featured ? "text-brand-ink/70" : "text-fg-muted"}`}>
