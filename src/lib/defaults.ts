@@ -108,14 +108,30 @@ export const DEFAULT_CONTENT: RawSiteContent = {
   },
   location: {
     eyebrow: L("Come Train", "تعال وتمرّن"),
-    heading: L("Find us in Amman", "زورونا في عمّان"),
-    address: L("Amman, Jordan", "عمّان، الأردن"),
-    mapEmbed:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27073.5!2d35.91!3d31.95!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDU3JzAwLjAiTiAzNcKwNTQnMzYuMCJF!5e0!3m2!1sen!2sjo!4v1700000000000",
-    hours: [
-      { day: L("Mon – Fri", "الإثنين – الجمعة"), time: L("6:00 AM – 12:00 AM", "٦:٠٠ ص – ١٢:٠٠ م") },
-      { day: L("Saturday", "السبت"), time: L("8:00 AM – 11:00 PM", "٨:٠٠ ص – ١١:٠٠ م") },
-      { day: L("Sunday", "الأحد"), time: L("9:00 AM – 10:00 PM", "٩:٠٠ ص – ١٠:٠٠ م") },
+    heading: L("Two clubs in Amman", "ناديان في عمّان"),
+    places: [
+      {
+        label: L("Men's Club", "نادي الرجال"),
+        address: L("Amman, Jordan", "عمّان، الأردن"),
+        mapEmbed:
+          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27073.5!2d35.91!3d31.95!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDU3JzAwLjAiTiAzNcKwNTQnMzYuMCJF!5e0!3m2!1sen!2sjo!4v1700000000000",
+        hours: [
+          { day: L("Mon – Fri", "الإثنين – الجمعة"), time: L("6:00 AM – 12:00 AM", "٦:٠٠ ص – ١٢:٠٠ م") },
+          { day: L("Saturday", "السبت"), time: L("8:00 AM – 11:00 PM", "٨:٠٠ ص – ١١:٠٠ م") },
+          { day: L("Sunday", "الأحد"), time: L("9:00 AM – 10:00 PM", "٩:٠٠ ص – ١٠:٠٠ م") },
+        ],
+      },
+      {
+        label: L("Women's Club", "نادي السيدات"),
+        address: L("Amman, Jordan", "عمّان، الأردن"),
+        mapEmbed:
+          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27073.5!2d35.91!3d31.95!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDU3JzAwLjAiTiAzNcKwNTQnMzYuMCJF!5e0!3m2!1sen!2sjo!4v1700000000001",
+        hours: [
+          { day: L("Mon – Fri", "الإثنين – الجمعة"), time: L("8:00 AM – 10:00 PM", "٨:٠٠ ص – ١٠:٠٠ م") },
+          { day: L("Saturday", "السبت"), time: L("9:00 AM – 9:00 PM", "٩:٠٠ ص – ٩:٠٠ م") },
+          { day: L("Sunday", "الأحد"), time: L("10:00 AM – 8:00 PM", "١٠:٠٠ ص – ٨:٠٠ م") },
+        ],
+      },
     ],
   },
 };

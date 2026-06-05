@@ -3,7 +3,7 @@ import { db } from "./db";
 import { DEFAULT_CONTENT } from "./defaults";
 import type { RawSiteContent, SiteContent, Lang, Submission } from "./types";
 
-const CONTENT_KEY = "site_content_v2";
+const CONTENT_KEY = "site_content_v3";
 
 // Deep-merge stored content over defaults so newly added fields always resolve.
 function deepMerge<T>(base: T, override: unknown): T {

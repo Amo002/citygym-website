@@ -17,6 +17,7 @@ export interface ClassItem { name: string; image: string; schedule: string; leve
 export interface Trainer { name: string; role: string; image: string; instagram: string }
 export interface Plan { name: string; price: string; period: string; features: string[]; featured: boolean }
 export interface Hour { day: string; time: string }
+export interface Place { label: string; address: string; mapEmbed: string; hours: Hour[] }
 
 export interface SiteContent {
   brand: {
@@ -34,7 +35,7 @@ export interface SiteContent {
   trainers: { eyebrow: string; heading: string; items: Trainer[] };
   gallery: { eyebrow: string; heading: string; images: string[] };
   pricing: { eyebrow: string; heading: string; plans: Plan[] };
-  location: { eyebrow: string; heading: string; address: string; mapEmbed: string; hours: Hour[] };
+  location: { eyebrow: string; heading: string; places: Place[] };
 }
 
 /* ───────────────── Raw (stored + admin) ───────────────── */
@@ -44,6 +45,7 @@ export interface RawClassItem { name: Localized; image: string; schedule: Locali
 export interface RawTrainer { name: Localized; role: Localized; image: string; instagram: string }
 export interface RawPlan { name: Localized; price: string; period: Localized; features: Localized[]; featured: boolean }
 export interface RawHour { day: Localized; time: Localized }
+export interface RawPlace { label: Localized; address: Localized; mapEmbed: string; hours: RawHour[] }
 
 export interface RawSiteContent {
   brand: {
@@ -61,7 +63,7 @@ export interface RawSiteContent {
   trainers: { eyebrow: Localized; heading: Localized; items: RawTrainer[] };
   gallery: { eyebrow: Localized; heading: Localized; images: string[] };
   pricing: { eyebrow: Localized; heading: Localized; plans: RawPlan[] };
-  location: { eyebrow: Localized; heading: Localized; address: Localized; mapEmbed: string; hours: RawHour[] };
+  location: { eyebrow: Localized; heading: Localized; places: RawPlace[] };
 }
 
 export interface Submission {

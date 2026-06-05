@@ -297,18 +297,30 @@ export function AdminDashboard({
             <Card>
               <LocText label="Eyebrow" value={c.location.eyebrow} onChange={(v) => up("location", { eyebrow: v })} />
               <LocText label="Heading" value={c.location.heading} onChange={(v) => up("location", { heading: v })} />
-              <LocText label="Address" value={c.location.address} onChange={(v) => up("location", { address: v })} />
-              <Area label="Google Maps Embed URL" value={c.location.mapEmbed} onChange={(v) => up("location", { mapEmbed: v })} />
-              <Label>Opening Hours</Label>
+              <Label>Locations (e.g. Men&apos;s Club, Women&apos;s Club)</Label>
               <Repeater
-                items={c.location.hours}
-                onChange={(hours) => up("location", { hours })}
-                blank={() => ({ day: { en: "", ar: "" }, time: { en: "", ar: "" } })}
-                addLabel="Add row"
-                render={(h, u) => (
+                items={c.location.places}
+                onChange={(places) => up("location", { places })}
+                blank={() => ({ label: { en: "", ar: "" }, address: { en: "", ar: "" }, mapEmbed: "", hours: [] })}
+                addLabel="Add location"
+                render={(pl, u) => (
                   <>
-                    <LocText label="Day" value={h.day} onChange={(v) => u({ day: v })} />
-                    <LocText label="Time" value={h.time} onChange={(v) => u({ time: v })} />
+                    <LocText label="Label" value={pl.label} onChange={(v) => u({ label: v })} />
+                    <LocText label="Address" value={pl.address} onChange={(v) => u({ address: v })} />
+                    <Area label="Google Maps Embed URL" value={pl.mapEmbed} onChange={(v) => u({ mapEmbed: v })} />
+                    <Label>Opening Hours</Label>
+                    <Repeater
+                      items={pl.hours}
+                      onChange={(hours) => u({ hours })}
+                      blank={() => ({ day: { en: "", ar: "" }, time: { en: "", ar: "" } })}
+                      addLabel="Add row"
+                      render={(h, uh) => (
+                        <>
+                          <LocText label="Day" value={h.day} onChange={(v) => uh({ day: v })} />
+                          <LocText label="Time" value={h.time} onChange={(v) => uh({ time: v })} />
+                        </>
+                      )}
+                    />
                   </>
                 )}
               />
