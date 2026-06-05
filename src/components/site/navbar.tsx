@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -31,10 +32,8 @@ export function Navbar({ brand }: { brand: string }) {
       }`}
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8">
-        <a href="#top" className="flex items-center gap-2">
-          <span className="grid h-9 w-9 place-items-center rounded-lg bg-brand font-display text-lg text-brand-ink">
-            C
-          </span>
+        <a href="#top" className="flex items-center gap-2.5">
+          <Image src="/logo.png" alt={brand} width={38} height={38} className="h-9 w-9 object-contain" priority />
           <span className="font-display text-xl tracking-wide">{brand}</span>
         </a>
 

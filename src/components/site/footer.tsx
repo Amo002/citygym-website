@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { InstagramIcon, FacebookIcon, WhatsappIcon } from "@/components/ui/social";
 import type { SiteContent } from "@/lib/types";
@@ -18,8 +19,8 @@ export function Footer({ brand }: { brand: SiteContent["brand"] }) {
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
         <div className="grid gap-10 md:grid-cols-[2fr_1fr_1fr]">
           <div>
-            <div className="flex items-center gap-2">
-              <span className="grid h-9 w-9 place-items-center rounded-lg bg-brand font-display text-lg text-brand-ink">C</span>
+            <div className="flex items-center gap-2.5">
+              <Image src="/logo.png" alt={brand.name} width={40} height={40} className="h-10 w-10 object-contain" />
               <span className="font-display text-2xl">{brand.name}</span>
             </div>
             <p className="mt-4 max-w-sm text-sm text-fg-muted">

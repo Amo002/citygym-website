@@ -56,8 +56,9 @@ export function AdminDashboard({
     <div className="flex min-h-screen">
       {/* Sidebar */}
       <aside className="sticky top-0 hidden h-screen w-60 shrink-0 flex-col border-r border-border bg-bg-elevated p-4 lg:flex">
-        <div className="flex items-center gap-2 px-2 py-3">
-          <span className="grid h-9 w-9 place-items-center rounded-lg bg-brand font-display text-lg text-brand-ink">C</span>
+        <div className="flex items-center gap-2.5 px-2 py-3">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.png" alt="City GYM" className="h-9 w-9 object-contain" />
           <span className="font-display text-xl">City GYM</span>
         </div>
         <nav className="mt-4 flex-1 space-y-1 overflow-y-auto">

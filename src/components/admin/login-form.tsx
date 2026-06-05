@@ -11,9 +11,8 @@ export function LoginForm() {
     <div className="grid min-h-screen place-items-center px-5">
       <div className="w-full max-w-sm">
         <div className="mb-8 text-center">
-          <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-brand font-display text-2xl text-brand-ink">
-            C
-          </span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.png" alt="City GYM" className="mx-auto h-16 w-16 object-contain" />
           <h1 className="font-display mt-4 text-3xl">City GYM Admin</h1>
           <p className="mt-1 text-sm text-fg-muted">Sign in to manage your site</p>
         </div>
