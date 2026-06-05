@@ -1,9 +1,9 @@
 import "server-only";
 import { db } from "./db";
 import { DEFAULT_CONTENT } from "./defaults";
-import type { SiteContent, Submission } from "./types";
+import type { RawSiteContent, SiteContent, Lang, Submission } from "./types";
 
-const CONTENT_KEY = "site_content";
+const CONTENT_KEY = "site_content_v2";
 
 // Deep-merge stored content over defaults so newly added fields always resolve.
 function deepMerge<T>(base: T, override: unknown): T {
@@ -19,7 +19,28 @@ function deepMerge<T>(base: T, override: unknown): T {
   return (override === undefined ? base : override) as T;
 }
 
-export function getContent(): SiteContent {
+function isLocalized(v: unknown): v is { en: string; ar: string } {
+  return (
+    typeof v === "object" && v !== null &&
+    "en" in v && "ar" in v &&
+    typeof (v as Record<string, unknown>).en === "string" &&
+    typeof (v as Record<string, unknown>).ar === "string"
+  );
+}
+
+// Recursively replace every { en, ar } with the string for `lang` (fallback to en).
+function resolve<T>(value: unknown, lang: Lang): T {
+  if (isLocalized(value)) return ((value[lang] || value.en) as unknown) as T;
+  if (Array.isArray(value)) return value.map((v) => resolve(v, lang)) as unknown as T;
+  if (value && typeof value === "object") {
+    const out: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(value)) out[k] = resolve(v, lang);
+    return out as T;
+  }
+  return value as T;
+}
+
+export function getRawContent(): RawSiteContent {
   const row = db.prepare("SELECT value FROM meta WHERE key = ?").get(CONTENT_KEY) as
     | { value: string }
     | undefined;
@@ -31,7 +52,11 @@ export function getContent(): SiteContent {
   }
 }
 
-export function saveContent(content: SiteContent): void {
+export function getContent(lang: Lang = "en"): SiteContent {
+  return resolve<SiteContent>(getRawContent(), lang);
+}
+
+export function saveContent(content: RawSiteContent): void {
   db.prepare(
     "INSERT INTO meta (key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value"
   ).run(CONTENT_KEY, JSON.stringify(content));
@@ -44,9 +69,7 @@ export function addSubmission(s: { name: string; email: string; phone: string; m
 }
 
 export function getSubmissions(): Submission[] {
-  return db
-    .prepare("SELECT * FROM submissions ORDER BY id DESC LIMIT 200")
-    .all() as Submission[];
+  return db.prepare("SELECT * FROM submissions ORDER BY id DESC LIMIT 200").all() as Submission[];
 }
 
 export function deleteSubmission(id: number) {

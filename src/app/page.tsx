@@ -1,4 +1,5 @@
 import { getContent } from "@/lib/content";
+import { getLang, UI } from "@/lib/i18n";
 import { Navbar } from "@/components/site/navbar";
 import { Marquee } from "@/components/site/marquee";
 import { Footer } from "@/components/site/footer";
@@ -14,25 +15,28 @@ import { Location } from "@/components/sections/location";
 
 export const dynamic = "force-dynamic";
 
-export default function Home() {
-  const c = getContent();
+export default async function Home() {
+  const lang = await getLang();
+  const c = getContent(lang);
+  const t = UI[lang];
+
   return (
     <>
-      <Navbar brand={c.brand.name} />
+      <Navbar brand={c.brand.name} lang={lang} t={t} />
       <main>
         <Hero data={c.hero} />
         <Marquee text={`${c.brand.name} — ${c.brand.tagline}`} />
-        <About data={c.about} />
+        <About data={c.about} yearsLabel={t.yearsStrong} />
         <Services data={c.services} />
         <Classes data={c.classes} />
-        <Marquee text="No Excuses · Just Results" reverse />
+        <Marquee text={lang === "ar" ? "لا أعذار · فقط نتائج" : "No Excuses · Just Results"} reverse />
         <Trainers data={c.trainers} />
         <Gallery data={c.gallery} />
-        <Pricing data={c.pricing} />
-        <Contact brand={c.brand} />
-        <Location data={c.location} />
+        <Pricing data={c.pricing} t={t} />
+        <Contact brand={c.brand} t={t.contact} />
+        <Location data={c.location} addressLabel={t.address} hoursLabel={t.hours} />
       </main>
-      <Footer brand={c.brand} />
+      <Footer brand={c.brand} t={t} />
     </>
   );
 }

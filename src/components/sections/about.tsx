@@ -4,7 +4,7 @@ import type { SiteContent } from "@/lib/types";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 
-export function About({ data }: { data: SiteContent["about"] }) {
+export function About({ data, yearsLabel }: { data: SiteContent["about"]; yearsLabel: string }) {
   return (
     <section id="about" className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
       <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
@@ -15,7 +15,7 @@ export function About({ data }: { data: SiteContent["about"] }) {
           </div>
           <div className="absolute -bottom-6 -right-4 hidden rounded-2xl border border-border bg-brand px-7 py-5 text-brand-ink shadow-xl sm:block">
             <div className="font-display text-4xl">10+</div>
-            <div className="text-sm font-medium">Years strong</div>
+            <div className="text-sm font-medium">{yearsLabel}</div>
           </div>
         </Reveal>
 

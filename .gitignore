@@ -38,6 +38,8 @@ yarn-error.log*
 
 # local SQLite database (created at runtime)
 /data
+# user-uploaded images (created at runtime via admin)
+/public/uploads
 
 # typescript
 *.tsbuildinfo

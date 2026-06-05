@@ -3,7 +3,7 @@ import type { SiteContent } from "@/lib/types";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 
-export function Location({ data }: { data: SiteContent["location"] }) {
+export function Location({ data, addressLabel, hoursLabel }: { data: SiteContent["location"]; addressLabel: string; hoursLabel: string }) {
   return (
     <section id="location" className="border-t border-border bg-bg-sunken">
       <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
@@ -24,18 +24,18 @@ export function Location({ data }: { data: SiteContent["location"] }) {
             <div className="card p-7">
               <div className="flex items-center gap-3">
                 <MapPin className="text-brand" size={20} />
-                <h3 className="font-display text-2xl">Address</h3>
+                <h3 className="font-display text-2xl">{addressLabel}</h3>
               </div>
               <p className="mt-3 text-fg-muted">{data.address}</p>
             </div>
             <div className="card flex-1 p-7">
               <div className="flex items-center gap-3">
                 <Clock className="text-brand" size={20} />
-                <h3 className="font-display text-2xl">Opening Hours</h3>
+                <h3 className="font-display text-2xl">{hoursLabel}</h3>
               </div>
               <ul className="mt-4 divide-y divide-border">
-                {data.hours.map((h) => (
-                  <li key={h.day} className="flex items-center justify-between py-3 text-sm">
+                {data.hours.map((h, hi) => (
+                  <li key={hi} className="flex items-center justify-between py-3 text-sm">
                     <span className="font-medium">{h.day}</span>
                     <span className="text-fg-muted">{h.time}</span>
                   </li>

@@ -4,19 +4,22 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
+import { LangSwitch } from "./lang-switch";
+import type { Lang } from "@/lib/types";
+import type { UIStrings } from "@/lib/i18n";
 
-const LINKS = [
-  { href: "#about", label: "About" },
-  { href: "#services", label: "Services" },
-  { href: "#classes", label: "Classes" },
-  { href: "#trainers", label: "Coaches" },
-  { href: "#pricing", label: "Pricing" },
-  { href: "#contact", label: "Contact" },
-];
-
-export function Navbar({ brand }: { brand: string }) {
+export function Navbar({ brand, lang, t }: { brand: string; lang: Lang; t: UIStrings }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const links = [
+    { href: "#about", label: t.nav.about },
+    { href: "#services", label: t.nav.services },
+    { href: "#classes", label: t.nav.classes },
+    { href: "#trainers", label: t.nav.trainers },
+    { href: "#pricing", label: t.nav.pricing },
+    { href: "#contact", label: t.nav.contact },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -38,24 +41,21 @@ export function Navbar({ brand }: { brand: string }) {
         </a>
 
         <div className="hidden items-center gap-8 md:flex">
-          {LINKS.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-sm font-medium text-fg-muted transition-colors hover:text-fg"
-            >
+          {links.map((l) => (
+            <a key={l.href} href={l.href} className="text-sm font-medium text-fg-muted transition-colors hover:text-fg">
               {l.label}
             </a>
           ))}
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
+          <LangSwitch lang={lang} />
           <ThemeToggle />
           <a
             href="#pricing"
             className="hidden rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-brand-ink transition-transform hover:scale-105 sm:inline-block"
           >
-            Join Now
+            {t.joinNow}
           </a>
           <button
             className="grid h-10 w-10 place-items-center rounded-full border border-border md:hidden"
@@ -70,13 +70,8 @@ export function Navbar({ brand }: { brand: string }) {
       {open && (
         <div className="border-t border-border bg-bg/95 backdrop-blur-xl md:hidden">
           <div className="flex flex-col px-5 py-4">
-            {LINKS.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="py-3 text-base font-medium text-fg-muted hover:text-fg"
-              >
+            {links.map((l) => (
+              <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="py-3 text-base font-medium text-fg-muted hover:text-fg">
                 {l.label}
               </a>
             ))}

@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { login, logout, getSession, changePassword } from "@/lib/auth";
 import { saveContent, deleteSubmission } from "@/lib/content";
-import type { SiteContent } from "@/lib/types";
+import type { RawSiteContent } from "@/lib/types";
 
 export async function loginAction(_prev: unknown, formData: FormData) {
   const username = String(formData.get("username") || "");
@@ -19,7 +19,7 @@ export async function logoutAction() {
   redirect("/admin/login");
 }
 
-export async function saveContentAction(content: SiteContent) {
+export async function saveContentAction(content: RawSiteContent) {
   const session = await getSession();
   if (!session) return { error: "Unauthorized" };
   saveContent(content);

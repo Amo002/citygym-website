@@ -2,18 +2,18 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { InstagramIcon, FacebookIcon, WhatsappIcon } from "@/components/ui/social";
 import type { SiteContent } from "@/lib/types";
+import type { UIStrings } from "@/lib/i18n";
 
-const NAV = [
-  { href: "#about", label: "About" },
-  { href: "#services", label: "Services" },
-  { href: "#classes", label: "Classes" },
-  { href: "#trainers", label: "Coaches" },
-  { href: "#pricing", label: "Pricing" },
-  { href: "#location", label: "Location" },
-];
-
-export function Footer({ brand }: { brand: SiteContent["brand"] }) {
+export function Footer({ brand, t }: { brand: SiteContent["brand"]; t: UIStrings }) {
   const year = new Date().getFullYear();
+  const nav = [
+    { href: "#about", label: t.nav.about },
+    { href: "#services", label: t.nav.services },
+    { href: "#classes", label: t.nav.classes },
+    { href: "#trainers", label: t.nav.trainers },
+    { href: "#pricing", label: t.nav.pricing },
+    { href: "#location", label: t.nav.location },
+  ];
   return (
     <footer className="border-t border-border bg-bg">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
@@ -24,7 +24,7 @@ export function Footer({ brand }: { brand: SiteContent["brand"] }) {
               <span className="font-display text-2xl">{brand.name}</span>
             </div>
             <p className="mt-4 max-w-sm text-sm text-fg-muted">
-              {brand.tagline}. {brand.address}. Train hard, live better — join the City GYM movement.
+              {brand.tagline}. {brand.address}.
             </p>
             <div className="mt-6 flex gap-3">
               {[
@@ -40,9 +40,9 @@ export function Footer({ brand }: { brand: SiteContent["brand"] }) {
           </div>
 
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-widest text-fg-muted">Explore</h4>
+            <h4 className="text-xs font-semibold uppercase tracking-widest text-fg-muted">{t.footer.explore}</h4>
             <ul className="mt-4 space-y-2.5">
-              {NAV.map((n) => (
+              {nav.map((n) => (
                 <li key={n.href}>
                   <a href={n.href} className="text-sm text-fg-muted transition-colors hover:text-brand">{n.label}</a>
                 </li>
@@ -51,21 +51,21 @@ export function Footer({ brand }: { brand: SiteContent["brand"] }) {
           </div>
 
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-widest text-fg-muted">Contact</h4>
+            <h4 className="text-xs font-semibold uppercase tracking-widest text-fg-muted">{t.footer.contact}</h4>
             <ul className="mt-4 space-y-2.5 text-sm text-fg-muted">
-              <li>{brand.phoneMen}</li>
-              <li>{brand.phoneWomen}</li>
-              <li>{brand.email}</li>
+              <li dir="ltr">{brand.phoneMen}</li>
+              <li dir="ltr">{brand.phoneWomen}</li>
+              <li dir="ltr">{brand.email}</li>
             </ul>
             <a href="/admin" className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand">
-              Admin <ArrowUpRight size={14} />
+              {t.footer.admin} <ArrowUpRight size={14} />
             </a>
           </div>
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 text-sm text-fg-muted sm:flex-row">
-          <p>© {year} {brand.name}. All rights reserved.</p>
-          <p>Amman · Jordan</p>
+          <p>© {year} {brand.name}. {t.footer.rights}</p>
+          <p>{brand.address}</p>
         </div>
       </div>
     </footer>

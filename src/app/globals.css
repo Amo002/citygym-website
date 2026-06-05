@@ -55,6 +55,15 @@ body {
   font-family: var(--font-sora), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  /* App-like feel: no accidental text highlighting on the marketing site */
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* …but keep selection usable where it matters (admin inputs, etc.) */
+input, textarea, [contenteditable], select {
+  -webkit-user-select: text;
+  user-select: text;
 }
 
 ::selection { background: var(--brand); color: var(--brand-ink); }
@@ -67,6 +76,19 @@ body {
   line-height: 0.9;
   font-weight: 400;
 }
+
+/* ── Arabic / RTL ── Anton has no Arabic glyphs, so use Cairo when RTL. */
+[dir="rtl"] body { font-family: var(--font-cairo), system-ui, sans-serif; }
+[dir="rtl"] .font-display {
+  font-family: var(--font-cairo), sans-serif;
+  font-weight: 900;
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1.1;
+}
+/* The marquee uses an X-translate keyframe; flip its start so RTL reads right. */
+[dir="rtl"] .animate-marquee { animation-direction: reverse; }
+[dir="rtl"] .animate-marquee-rev { animation-direction: normal; }
 
 /* Brand gradient text */
 .text-gradient {
